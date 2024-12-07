@@ -14,7 +14,8 @@ val fullChannels = mutableListOf<Channel>()
             "https://www.yangshipin.cn/tv/home?pid=600001814")),
         Channel("CCTV-5 体育", "", listOf("https://tv.cctv.com/live/cctv5/")),
         Channel("CCTV-5+ 体育赛事", "", listOf("https://tv.cctv.com/live/cctv5plus/")),
-        Channel("CCTV-6 电影", "", listOf("https://tv.cctv.com/live/cctv6/")),
+        Channel("CCTV-6 电影", "", listOf("https://tv.cctv.com/live/cctv6/",
+            "http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0")),
         Channel("CCTV-7 国防军事", "", listOf("https://tv.cctv.com/live/cctv7/",
             "https://www.yangshipin.cn/tv/home?pid=600004092")),
         Channel("CCTV-8 电视剧", "", listOf("https://tv.cctv.com/live/cctv8/")),
@@ -39,10 +40,23 @@ val fullChannels = mutableListOf<Channel>()
         Channel("CCTV-4 中文国际（欧洲）", "", listOf("https://tv.cctv.com/live/cctveurope/")),
         Channel("CCTV-4 中文国际（美洲）", "", listOf("https://tv.cctv.com/live/cctvamerica/")),
         Channel("CCTV-4K 超高清", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002264")),
+    )
+    .addChannels(
+        "国家",
         Channel("CETV-1 综合教育", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_ffa6b6e1b32b4a16a73eb3ef66f8bfc7.html")),
         Channel("CETV-2 空中课堂", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_80d0ffb42c114eaf9663708629ff0a3e.html")),
         Channel("CETV-4 职业教育", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_67eace939278435bb4bca90800fb4225.html",
             "https://edu.cctv.com/cetv/")),
+
+        Channel("CECTV-1 汉语文化", "", listOf("http://m3u8.cec-tv.com.cn/?url=http://play.cec-tv.com.cn/channel/cec-tv1.m3u8",
+            "http://play.cec-tv.com.cn/channel/cec-tv1.m3u8")),
+        Channel("CECTV-2 国际旅游", "", listOf("http://m3u8.cec-tv.com.cn/?url=http://play.cec-tv.com.cn/channel/cec-tv2.m3u8",
+            "http://play.cec-tv.com.cn/channel/cec-tv2.m3u8")),
+        Channel("CECTV-3 国际教育", "", listOf("http://m3u8.cec-tv.com.cn/?url=http://play.cec-tv.com.cn/channel/cec-tv3.m3u8",
+            "http://play.cec-tv.com.cn/channel/cec-tv3.m3u8")),
+        Channel("CECTV-4 国际健康", "", listOf("http://m3u8.cec-tv.com.cn/?url=http://play.cec-tv.com.cn/channel/cec-tv4.m3u8",
+            "http://play.cec-tv.com.cn/channel/cec-tv4.m3u8")),
+
         Channel("CGTN", "", listOf("https://www.cgtn.com/tv",
             "https://www.yangshipin.cn/tv/home?pid=600014550",)),
         Channel("CGTN Español", "", listOf("https://espanol.cgtn.com/en-directo",
@@ -55,6 +69,9 @@ val fullChannels = mutableListOf<Channel>()
             "https://www.yangshipin.cn/tv/home?pid=600084758")),
         Channel("CGTN Documentary", "", listOf("https://www.cgtn.com/channel/documentary",
             "https://www.yangshipin.cn/tv/home?pid=600084781")),
+
+        Channel("中国气象频道", "", listOf("http://www.weathertv.cn",
+            "http://hls.weathertv.cn/tslslive/qCFIfHB/hls/live_sd.m3u8")),
     )
     .addChannels(
         "卫视",
@@ -66,7 +83,8 @@ val fullChannels = mutableListOf<Channel>()
         Channel("湖南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002475")),
         Channel("湖北卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002508")),
         Channel("广东卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002485")),
-        Channel("广西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002509")),
+        Channel("广西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002509",
+            "https://tv.gxtv.cn/channel/channelivePlay_e7a7ab7df9fe11e88bcfe41f13b60c62.html")),
         Channel("黑龙江卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002498")),
         Channel("海南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002506")),
         Channel("重庆卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002531")),
@@ -75,22 +93,31 @@ val fullChannels = mutableListOf<Channel>()
         Channel("康巴卫视", "", listOf("https://www.kangbatv.com/zb_22587/")),
         Channel("河南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002525")),
         Channel("东南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002484")),
+        Channel("海峡卫视", "", listOf("https://www.fjtv.net/folder526/folder536/")),
         Channel("贵州卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002490")),
         Channel("江西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002503")),
         Channel("辽宁卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002505")),
         Channel("安徽卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002532")),
         Channel("河北卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002493")),
         Channel("山东卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002513")),
-        Channel("山西卫视", "", listOf("https://www.sxrtv.com/tv/index.shtml")),
-        //Channel("吉林卫视", "", listOf("https://www.jlntv.cn/tv?id=104")),
+        Channel("山西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190407",
+            "https://www.sxrtv.com/tv/index.shtml")),
+        Channel("吉林卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190405")),
         Channel("延边卫视", "", listOf("https://www.yb983.com/cys/index.html")),
-        Channel("新疆卫视", "", listOf("https://www.xjtvs.com.cn/column/tv/434?channelId=1")),
         Channel("大湾区卫视", "", listOf("https://m.gdtv.cn/tvChannelDetail/51")),
         Channel("大湾区卫视（海外版）", "", listOf("https://m.gdtv.cn/tvChannelDetail/46")),
-        Channel("内蒙古卫视", "", listOf("https://www.nmtv.cn/liveTv")),
+        Channel("内蒙古卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190401",
+            "https://www.nmtv.cn/liveTv")),
         Channel("陕西卫视", "", listOf("http://www.sxtvs.com/sxtvs_sxws/index.html")),
-        Channel("云南卫视", "", listOf("https://www.yntv.cn/live.html")),
-        Channel("青海卫视", "", listOf("http://www.qhbtv.com/new_index/live/folder2646/")),
+        Channel("云南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190402")),
+        Channel("青海卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190406",
+            "http://www.qhbtv.com/new_index/live/folder2646/")),
+        Channel("天津卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600152137")),
+        Channel("陕西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190400")),
+        Channel("甘肃卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190408")),
+        Channel("宁夏卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190737")),
+        Channel("新疆卫视", "", listOf("https://www.xjtvs.com.cn/column/tv/434?channelId=1")),
+        Channel("西藏卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600190403")),
     )
     .addChannels(
         "北京",
@@ -135,26 +162,69 @@ val fullChannels = mutableListOf<Channel>()
     )
     .addChannels(
         "广东",
-        Channel("广东卫视", "", listOf("https://m.gdtv.cn/tvChannelDetail/43")),
-        Channel("广东珠江", "", listOf("https://m.gdtv.cn/tvChannelDetail/44")),
-        Channel("广东新闻", "", listOf("https://m.gdtv.cn/tvChannelDetail/45")),
-        Channel("广东民生", "", listOf("https://m.gdtv.cn/tvChannelDetail/48")),
-        Channel("广东体育", "", listOf("https://m.gdtv.cn/tvChannelDetail/47")),
-        Channel("大湾区卫视", "", listOf("https://m.gdtv.cn/tvChannelDetail/51")),
-        Channel("大湾区卫视（海外版）", "", listOf("https://m.gdtv.cn/tvChannelDetail/46")),
-        Channel("经济科教", "", listOf("https://m.gdtv.cn/tvChannelDetail/49")),
-        Channel("广东影视", "", listOf("https://m.gdtv.cn/tvChannelDetail/53")),
-        Channel("4K超高清","", listOf( "https://m.gdtv.cn/tvChannelDetail/16")),
-        Channel("广东少儿", "", listOf("https://m.gdtv.cn/tvChannelDetail/54")),
-        Channel("嘉佳卡通", "", listOf("https://m.gdtv.cn/tvChannelDetail/66")),
-        Channel("岭南戏曲", "", listOf("https://m.gdtv.cn/tvChannelDetail/15")),
-        Channel("现代教育", "", listOf("https://m.gdtv.cn/tvChannelDetail/13")),
+        Channel("广东卫视", "", listOf(
+            "https://www.yangshipin.cn/tv/home?pid=600002485",
+            "https://m.gdtv.cn/tvChannelDetail/43")),
+        Channel("广东珠江", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdzj",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdzj",
+            "https://m.gdtv.cn/tvChannelDetail/44")),
+        Channel("广东新闻", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdxw",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdxw",
+            "https://m.gdtv.cn/tvChannelDetail/45")),
+        Channel("广东民生", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdms",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdms",
+            "https://m.gdtv.cn/tvChannelDetail/48")),
+        Channel("广东体育", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdty",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdty",
+            "https://m.gdtv.cn/tvChannelDetail/47")),
+        Channel("大湾区卫视", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=dwqws",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=dwqws",
+            "https://m.gdtv.cn/tvChannelDetail/51")),
+        Channel("大湾区卫视（海外版）", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdgj",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdgj",
+            "https://m.gdtv.cn/tvChannelDetail/46")),
+        Channel("经济科教", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=jjkj",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=jjkj",
+            "https://m.gdtv.cn/tvChannelDetail/49")),
+        Channel("广东影视", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdys",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdys",
+            "https://m.gdtv.cn/tvChannelDetail/53")),
+        Channel("4K超高清","", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdzy",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdzy",
+            "https://m.gdtv.cn/tvChannelDetail/16")),
+        Channel("广东少儿", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=gdse",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=gdse",
+            "https://m.gdtv.cn/tvChannelDetail/54")),
+        Channel("嘉佳卡通", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=jjkt",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=jjkt",
+            "https://m.gdtv.cn/tvChannelDetail/66")),
+        Channel("岭南戏曲", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=lnxq",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=lnxq",
+            "https://m.gdtv.cn/tvChannelDetail/15")),
+        Channel("现代教育", "", listOf(
+            "http://2017.ydns.eu/site/video.html?id=http://2017.ydns.eu/wap/v2.php?id=xdjy",
+            "https://2018.v2free.cf/site/video.html?id=https://2018.v2free.cf/wap/v2.php?id=xdjy",
+            "https://m.gdtv.cn/tvChannelDetail/13")),
         Channel("荔枝台", "", listOf("https://m.gdtv.cn/tvChannelDetail/94")),
         Channel("纪录片", "", listOf("https://m.gdtv.cn/tvChannelDetail/100")),
         Channel("GRTN健康频道", "", listOf("https://m.gdtv.cn/tvChannelDetail/99")),
         Channel("GRTN文化频道", "", listOf("https://m.gdtv.cn/tvChannelDetail/75")),
         Channel("GRTN生活频道", "", listOf("https://m.gdtv.cn/tvChannelDetail/102")),
         Channel("GRTN教育频道", "", listOf("https://m.gdtv.cn/tvChannelDetail/104")),
+
+        Channel("广州综合", "", listOf("https://www.gztv.com/#/channel")),
 
         Channel("深圳卫视", "", listOf("https://www.sztv.com.cn/pindao/index.html?id=7867")),
         Channel("深圳都市", "", listOf("https://www.sztv.com.cn/pindao/index.html?id=7868")),
@@ -170,7 +240,23 @@ val fullChannels = mutableListOf<Channel>()
         Channel("佛山三水", "", listOf("http://xiubo.net/tv/gd/fsss.html")),
         Channel("佛山综合", "", listOf("http://xiubo.net/tv/gd/fszh.html")),
         Channel("佛山南海", "", listOf("http://xiubo.net/tv/gd/fsnh.html")),
+
+        Channel("揭阳综合", "", listOf("https://www.jyrtv.tv/fccommon/Home/detail?site_id=75&detail_type=7&cid=11")),
+        Channel("揭阳公共", "", listOf("https://www.jyrtv.tv/fccommon/Home/detail?site_id=75&detail_type=7&cid=12")),
     )
+    .addChannels(
+        "广西",
+        Channel("广西卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002509",
+            "https://tv.gxtv.cn/channel/channelivePlay_e7a7ab7df9fe11e88bcfe41f13b60c62.html")),
+        Channel("广西综艺旅游", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_f3335975f9fe11e88bcfe41f13b60c62.html")),
+        Channel("广西都市", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_fdbaf085f9fe11e88bcfe41f13b60c62.html")),
+        Channel("广西影视", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_5e923d82058e11e9ba67e41f13b60c62.html")),
+        Channel("广西新闻", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_9dfd8600075811e9ba67e41f13b60c62.html")),
+        Channel("广西国际", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_bfa17b64157f11e999f0e41f13b60c62.html")),
+        Channel("广西移动", "", listOf("https://tv.gxtv.cn/channel/channelivePlay_78dbfd44e6b74ab687204d2d8113cbf5.html")),
+        Channel("玉林新闻综合", "", listOf("https://web.guangdianyun.tv/tv/3289?uin=4042")),
+        Channel("玉林公共", "", listOf("https://web.guangdianyun.tv/tv/3290?uin=4042")),
+        )
     .addChannels(
         "江西",
         Channel("江西卫视", "", listOf("https://www.jxntv.cn/live/#/")),
@@ -193,6 +279,12 @@ val fullChannels = mutableListOf<Channel>()
         Channel("江苏体育", "", listOf("https://live.jstv.com/?channelId=537")),
         Channel("江苏国际", "", listOf("https://live.jstv.com/?channelId=544")),
         Channel("优漫卡通", "", listOf("https://live.jstv.com/?channelId=543")),
+        Channel("南京新闻综合", "", listOf("https://www.nbs.cn/live/?id=109152")),
+        Channel("南京十八•生活", "", listOf("https://www.nbs.cn/live/?id=110094")),
+        Channel("南京教科", "", listOf("https://www.nbs.cn/live/?id=109153")),
+        Channel("南京文旅纪录", "", listOf("https://www.nbs.cn/live/?id=110093")),
+        Channel("南京少儿", "", listOf("https://www.nbs.cn/live/?id=110095")),
+        Channel("江宁综合", "", listOf("http://tv.haoqu99.com/3/jiangsu/jiangning.html")),
     )
     .addChannels(
         "河北",
@@ -203,6 +295,11 @@ val fullChannels = mutableListOf<Channel>()
         Channel("河北都市", "", listOf("https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=3")),
         Channel("河北影视剧", "", listOf("https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=4")),
         Channel("少儿科教", "", listOf("https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=5")),
+    )
+    .addChannels(
+        "河南",
+        Channel("河南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002525")),
+        Channel("河南都市", "", listOf("https://www.hntv2.net/index.html#/pages/tv/index")),
     )
     .addChannels(
         "上海",
@@ -226,16 +323,25 @@ val fullChannels = mutableListOf<Channel>()
         Channel("浙江少儿", "", listOf("https://www.cztv.com/liveTV/108")),
         Channel("浙江国际", "", listOf("https://www.cztv.com/liveTV/110")),
         Channel("浙江之江纪录", "", listOf("https://www.cztv.com/liveTV/112")),
+
         Channel("杭州综合", "", listOf("https://tv.hoolo.tv/hzzh/")),
         Channel("西湖明珠", "", listOf("https://tv.hoolo.tv/xhmz/")),
         Channel("杭州生活", "", listOf("https://tv.hoolo.tv/hzsh/")),
         Channel("杭州影视", "", listOf("https://tv.hoolo.tv/utv/")),
         Channel("杭州青少体育", "", listOf("https://tv.hoolo.tv/hzse/")),
         Channel("杭州文化", "", listOf("https://tv.hoolo.tv/whpd/")),
-        Channel("宁波-1 新闻综合", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV1/index.shtml")),
-        Channel("宁波-2 经济生活", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV2/index.shtml")),
-        Channel("宁波-3 都市文体", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV3/index.shtml")),
-        Channel("宁波-4 影视剧", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV4/index.shtml")),
+
+        Channel("宁波新闻综合", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV1/index.shtml")),
+        Channel("宁波经济生活", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV2/index.shtml")),
+        Channel("宁波都市文体", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV3/index.shtml")),
+        Channel("宁波影视剧", "", listOf("https://www.ncmc.nbtv.cn/gbds/folder8458/NBTV4/index.shtml")),
+
+        Channel("绍兴新闻综合", "", listOf("https://www.shaoxing.com.cn/app/tv/74",
+            "http://live.shaoxing.com.cn/video/s10001-sxhb/index.m3u8")),
+        Channel("绍兴公共", "", listOf("https://www.shaoxing.com.cn/app/tv/78",
+            "http://live.shaoxing.com.cn/video/s10001-sxtv2/index.m3u8")),
+        Channel("绍兴文化影视", "", listOf("https://www.shaoxing.com.cn/app/tv/75",
+            "http://live.shaoxing.com.cn/video/s10001-sxtv3/index.m3u8")),
     )
     .addChannels(
         "安徽",
@@ -266,11 +372,29 @@ val fullChannels = mutableListOf<Channel>()
         Channel("贵州移动", "", listOf("https://www.gzstv.com/tv/ch13")),
     )
     .addChannels(
+        "山东",
+        Channel("山东卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002513")),
+        Channel("青岛一套", "", listOf("http://www.qtv.com.cn/live/tv/index.shtml")),
+        Channel("青岛二套", "", listOf("http://www.qtv.com.cn/live/tv/tv_qtv2.shtml")),
+        Channel("青岛三套", "", listOf("http://www.qtv.com.cn/live/tv/tv_qtv3.shtml")),
+        Channel("青岛四套", "", listOf("http://www.qtv.com.cn/live/tv/tv_qtv4.shtml")),
+        Channel("青岛五套", "", listOf("http://www.qtv.com.cn/live/tv/tv_qtv5.shtml")),
+        Channel("青岛六套", "", listOf("http://www.qtv.com.cn/live/tv/tv_qtv6.shtml")),
+    )
+    .addChannels(
+        "山西",
+        Channel("山西卫视", "", listOf("https://www.sxrtv.com/tv/index.shtml")),
+        Channel("太原新闻综合", "", listOf("https://www.sxtygdy.com/23/23mbdszb/index.shtml")),
+        Channel("大同新闻综合", "", listOf("https://www.dtradio.com.cn/local/folder25")),
+        Channel("阳泉新闻综合", "", listOf("https://www.yqrtv.com/folder74/folder139?id=10")),
+        Channel("阳泉科教", "", listOf("https://www.yqrtv.com/folder74/folder139?id=11")),
+    )
+    .addChannels(
         "吉林",
         Channel("吉林卫视", "", listOf("https://www.jlntv.cn/tv?id=104")),
         Channel("延边卫视", "", listOf("https://www.yb983.com/cys/index.html")),
-        Channel("延边-1 朝鲜语综合", "", listOf("https://www.yb983.com/ybtv1/index.html")),
-        Channel("延边-2 汉语综合", "", listOf("https://www.yb983.com/ybtv2/index.html")),
+        Channel("延边朝鲜语综合", "", listOf("https://www.yb983.com/ybtv1/index.html")),
+        Channel("延边汉语综合", "", listOf("https://www.yb983.com/ybtv2/index.html")),
     )
     .addChannels(
         "黑龙江",
@@ -285,16 +409,61 @@ val fullChannels = mutableListOf<Channel>()
         Channel("哈尔滨影视", "", listOf("https://www.hrbtv.net/folder79/folder87/")),
     )
     .addChannels(
+        "海南",
+        Channel("海南卫视", "", listOf("http://tc.hnntv.cn/")),
+        Channel("三沙卫视", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=5")),
+        Channel("海南新闻", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=3")),
+        Channel("海南公共", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=4")),
+        Channel("海南文旅", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=6")),
+        Channel("海南少儿", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=7")),
+        Channel("海南自贸", "", listOf("https://www.hnntv.cn/live.html?playType=livePlay&channelId=1")),
+    )
+    .addChannels(
+        "福建",
+        Channel("东南卫视", "", listOf("https://www.yangshipin.cn/tv/home?pid=600002484",
+            "https://live.fjtv.net/setv/")),
+        Channel("海峡卫视", "", listOf("https://www.fjtv.net/folder526/folder536/")),
+        Channel("福建新闻", "", listOf("https://live.fjtv.net/xwpd/")),
+        Channel("福建旅游", "", listOf("https://live.fjtv.net/dspd/")),
+        Channel("福建公共", "", listOf("https://live.fjtv.net/ggpd/")),
+        Channel("福建经视", "", listOf("https://live.fjtv.net/jspd/")),
+        Channel("厦门新闻综合", "", listOf("https://live1b.kxm.xmtv.cn/xm1bf/tvzb/live.m3u8")),
+        Channel("厦门海峡", "", listOf("https://live1b.kxm.xmtv.cn/xm2bf/playlist.m3u8",
+            "https://live1b.kxm.xmtv.cn/xm2bf/tvzb/live.m3u8")),
+    )
+    .addChannels(
+        "甘肃",
+        Channel("甘肃卫视", "", listOf("http://www.gstv.com.cn/zxc.jhtml", "http://hls.gstv.com.cn/9hvng2/hcoqhp.m3u8")),
+        Channel("甘肃经济", "", listOf("http://hls.gstv.com.cn/49048r/10iv1j.m3u8")),
+        Channel("甘肃文化影视", "", listOf("http://hls.gstv.com.cn/49048r/w1l6d5.m3u8")),
+        Channel("甘肃公共应急", "", listOf("http://hls.gstv.com.cn/49048r/3t5xyc.m3u8")),
+        Channel("甘肃少儿", "", listOf("http://hls.gstv.com.cn/49048r/922k96.m3u8")),
+        Channel("甘肃都市", "", listOf("http://hls.gstv.com.cn/49048r/l54391.m3u8")),
+        Channel("甘肃移动电视", "", listOf("http://hls.gstv.com.cn/94ycke/v9qci2.m3u8")),
+    )
+    .addChannels(
         "香港",
-        Channel("翡翠台", "", listOf("https://www.tiantianzhibo.net/player/index?id=714fQdFOPs7fA2to6CG0UroN9l0YvCP5kVSLYnbvT654w1jlNQ",
-            "https://enz.gdplayertv.to/live-tv/tvb-jade/?embed=1")),
-        Channel("無線新聞", "", listOf("https://www.tiantianzhibo.net/player/index?id=5e2avMI8JXyPe9rVuDSxwiCvsqAqCrPBqPsUSWrXDKN2L9rIzA",
-            "https://enz.gdplayertv.to/live-tv/tvb-news/?embed=1")),
-        Channel("明珠台", "", listOf("https://www.tiantianzhibo.net/player/index?id=910drXCXuvox1KxMaCzEhMltq5JK1qSQy9zm-nkstsFwqLSw7i4",
-            "https://idx.gdplayertv.to/live-tv/tvb-pearl/?embed=1")),
-        Channel("鳳凰衛視資訊台", "", listOf("https://www.fengshows.com/live")),
+        Channel("翡翠台", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=714fQdFOPs7fA2to6CG0UroN9l0YvCP5kVSLYnbvT654w1jlNQ",
+            "https://enz.gdplayertv.to/live-tv/tvb-jade/?embed=1"
+        )),
+        Channel("無線新聞", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=5e2avMI8JXyPe9rVuDSxwiCvsqAqCrPBqPsUSWrXDKN2L9rIzA",
+            "https://idx.gdplayertv.to/live-tv/tvb-news/?embed=1",
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=73&pathid=0",
+            "https://news.tvb.com/tc/live/83",
+        )),
+        Channel("明珠台", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=910drXCXuvox1KxMaCzEhMltq5JK1qSQy9zm-nkstsFwqLSw7i4",
+            "https://idx.gdplayertv.to/live-tv/tvb-pearl/?embed=1"
+        )),
+        Channel("鳳凰衛視資訊台", "", listOf(
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=99&pathid=0",
+            "https://www.fengshows.com/live"
+        )),
         Channel("香港衛視", "", listOf("http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8",
             "http://www.hkstv.tv/index/live.html")),
+        Channel("創世電視", "", listOf("https://cdn.deepcore.online/ctv_hk/")),
     )
     .addChannels(
         "澳門",
@@ -311,15 +480,41 @@ val fullChannels = mutableListOf<Channel>()
     .addChannels(
         "台灣",
         Channel("東森新聞", "", listOf(
+            "https://idx.gdplayertv.to/live-tv/ebc-news-tv/?embed=1",
             "https://www.tiantianzhibo.net/player/index?id=d7c9cqojVv8HhOKJ21KwZvsYwApfnEiecpCVhysKZsYsWnGGTw",
-            "https://www.4gtv.tv/channel/4gtv-4gtv152?set=4&ch=292")),
-        Channel("東森財經", "", listOf("https://www.tiantianzhibo.net/player/index?id=5440lDG41CDeziB7SsRoChqYyIiSs14oznWXOe6Pw3W09l32yA")),
-        Channel("東森綜合", "", listOf("https://www.tiantianzhibo.net/player/index?id=f352Z9Iib4gt-4o-2JdjxD-Lcal2DNVSdFv8_KgVIpNEjBnMBA")),
-        Channel("東森電影", "", listOf("https://www.tiantianzhibo.net/player/index?id=faffRjOxK2m5W8AzdGxiWAst6NK0Bly9HTgNJP0Ni7KyWlF7tg")),
-        Channel("東森戲劇", "", listOf("https://www.tiantianzhibo.net/player/index?id=0ba9U596e_liclHp-sRJyA497-B-o2Ff0ws_6SUz1Yv4ZDBsiQ")),
-        Channel("東森洋片", "", listOf("https://www.tiantianzhibo.net/player/index?id=b731J0NuKSooz1MrvfF8lT9CFViu_ykbNOdGI7OkFYK7BbBy3A")),
-        Channel("東森幼幼", "", listOf("https://www.tiantianzhibo.net/player/index?id=8d89ITGSf0YWWa2GH1gY2jel3z4ciyTwW2dZKbQq43ZUD73YCg")),
-        Channel("年代新聞", "", listOf("https://www.tiantianzhibo.net/player/index?id=0c771kC3czYydY-9dMP-8087HfO99F_8NiDCWRdINHu9FLGGSQ")),
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=260165103&pathid=0",
+            "https://news.ebc.net.tw/video",
+            "https://www.4gtv.tv/channel/4gtv-4gtv152?set=4&ch=292"
+        )),
+        Channel("東森財經", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=5440lDG41CDeziB7SsRoChqYyIiSs14oznWXOe6Pw3W09l32yA",
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=260165109&pathid=0",
+            "https://fnc.ebc.net.tw/",
+        )),
+        Channel("東森綜合", "", listOf(
+            "https://idx.gdplayertv.to/live-tv/ebc-variety-tv/?embed=1",
+            "https://www.tiantianzhibo.net/player/index?id=f352Z9Iib4gt-4o-2JdjxD-Lcal2DNVSdFv8_KgVIpNEjBnMBA",
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=260165106&pathid=0"
+        )),
+        Channel("東森電影", "", listOf(
+            "https://idx.gdplayertv.to/live-tv/ebc-movies-tv/?embed=1",
+            "https://www.tiantianzhibo.net/player/index?id=faffRjOxK2m5W8AzdGxiWAst6NK0Bly9HTgNJP0Ni7KyWlF7tg",
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=260165104&pathid=0"
+        )),
+        Channel("東森戲劇", "", listOf(
+            "https://idx.gdplayertv.to/live-tv/ebc-drama-tv/?embed=1",
+            "https://www.tiantianzhibo.net/player/index?id=0ba9U596e_liclHp-sRJyA497-B-o2Ff0ws_6SUz1Yv4ZDBsiQ",
+            "https://www.chaojidianshi.net/e/DownSys/play/?classid=3&id=260165107&pathid=0"
+        )),
+        Channel("東森洋片", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=b731J0NuKSooz1MrvfF8lT9CFViu_ykbNOdGI7OkFYK7BbBy3A"
+        )),
+        Channel("東森幼幼", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=8d89ITGSf0YWWa2GH1gY2jel3z4ciyTwW2dZKbQq43ZUD73YCg"
+        )),
+        Channel("年代新聞", "", listOf(
+            "https://www.tiantianzhibo.net/player/index?id=0c771kC3czYydY-9dMP-8087HfO99F_8NiDCWRdINHu9FLGGSQ"
+        )),
         Channel("民視第一台", "", listOf("https://www.4gtv.tv/channel/4gtv-4gtv003?set=4&ch=1")),
         Channel("民視台灣台", "", listOf("https://www.4gtv.tv/channel/4gtv-4gtv001?set=4&ch=2")),
         Channel("民視新聞台", "", listOf("https://www.4gtv.tv/channel/litv-ftv13?set=4&ch=31")),
@@ -332,13 +527,27 @@ val fullChannels = mutableListOf<Channel>()
         Channel("華視", "", listOf("https://www.4gtv.tv/channel/4gtv-4gtv041?set=4&ch=6")),
         Channel("華視新聞", "", listOf("https://www.4gtv.tv/channel/4gtv-live014?set=4&ch=273")),
         Channel("大愛電視", "", listOf("https://www.4gtv.tv/channel/4gtv-live007?set=4&ch=209")),
+        Channel("番薯電視台", "", listOf("http://www.fanstv.tw/fans.html")),
         Channel("ARIRANG阿里郎頻道", "", listOf("https://www.4gtv.tv/channel/4gtv-4gtv079?set=4&ch=189")),
-        Channel("原住民族電視台", "", listOf("https://www.4gtv.tv/channel/4gtv-live014?set=4&ch=273")),
+        Channel("原住民族電視台", "", listOf(
+            "https://www.ipcf.org.tw/zh-TW/Vod/Home",
+            "https://www.4gtv.tv/channel/4gtv-live014?set=4&ch=273"
+        )),
     )
     .addChannels(
         "海外",
-        Channel("新唐人亚太台", "", listOf("https://www.ntdtv.com.tw/")),
-        Channel("新唐人美东台", "", listOf("https://www.ntdtv.com/")),
+        Channel("NHK World", "", listOf("https://www3.nhk.or.jp/nhkworld/common/player/tv/cclive/embed/embed.html?movie=truel&lang=zh")),
+
         Channel("VOA English TV", "", listOf("https://www.voanews.com/live/video/116")),
         Channel("VOA LIVE", "", listOf("https://www.voanews.com/live/video/126")),
+
+        Channel("新唐人美東台", "", listOf("https://www.ntdtv.com/", "https://www.ntdtv.com/b5/live-tv?code=ntd_usa_east")),
+//        Channel("新唐人美西台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_usa_west")),
+        Channel("新唐人歐洲台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_europe")),
+        Channel("新唐人加東台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_ca_east")),
+//        Channel("新唐人加西台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_ca_west")),
+//        Channel("新唐人舊金山台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_usa_sf")),
+//        Channel("新唐人休斯頓台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_usa_tx")),
+        Channel("新唐人亞太台", "", listOf("https://www.ntdtv.com.tw/", "https://www.ntdtv.com/b5/live-tv?code=ntd_asia_tw")),
+        Channel("新唐人中國台", "", listOf("https://www.ntdtv.com/b5/live-tv?code=ntd_china")),
     )

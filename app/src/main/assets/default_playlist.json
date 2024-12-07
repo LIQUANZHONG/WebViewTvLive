@@ -48,7 +48,8 @@
     "name": "CCTV-6 电影",
     "group": "央视",
     "urls": [
-      "https://tv.cctv.com/live/cctv6/"
+      "https://tv.cctv.com/live/cctv6/",
+      "http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay\u003d0"
     ]
   },
   {
@@ -157,76 +158,6 @@
     "group": "央视",
     "urls": [
       "https://www.yangshipin.cn/tv/home?pid\u003d600002264"
-    ]
-  },
-  {
-    "name": "CETV-1 综合教育",
-    "group": "央视",
-    "urls": [
-      "https://tv.gxtv.cn/channel/channelivePlay_ffa6b6e1b32b4a16a73eb3ef66f8bfc7.html"
-    ]
-  },
-  {
-    "name": "CETV-2 空中课堂",
-    "group": "央视",
-    "urls": [
-      "https://tv.gxtv.cn/channel/channelivePlay_80d0ffb42c114eaf9663708629ff0a3e.html"
-    ]
-  },
-  {
-    "name": "CETV-4 职业教育",
-    "group": "央视",
-    "urls": [
-      "https://tv.gxtv.cn/channel/channelivePlay_67eace939278435bb4bca90800fb4225.html",
-      "https://edu.cctv.com/cetv/"
-    ]
-  },
-  {
-    "name": "CGTN",
-    "group": "央视",
-    "urls": [
-      "https://www.cgtn.com/tv",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600014550"
-    ]
-  },
-  {
-    "name": "CGTN Español",
-    "group": "央视",
-    "urls": [
-      "https://espanol.cgtn.com/en-directo",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600084744"
-    ]
-  },
-  {
-    "name": "CGTN Français",
-    "group": "央视",
-    "urls": [
-      "https://francais.cgtn.com/channel",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600084704"
-    ]
-  },
-  {
-    "name": "CGTN العربية",
-    "group": "央视",
-    "urls": [
-      "https://arabic.cgtn.com/channel",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600084782"
-    ]
-  },
-  {
-    "name": "CGTN Русский",
-    "group": "央视",
-    "urls": [
-      "https://russian.cgtn.com/channel",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600084758"
-    ]
-  },
-  {
-    "name": "CGTN Documentary",
-    "group": "央视",
-    "urls": [
-      "https://www.cgtn.com/channel/documentary",
-      "https://www.yangshipin.cn/tv/home?pid\u003d600084781"
     ]
   }
 ]
