@@ -30,7 +30,7 @@ object PlaylistManager {
     private val playlistFile = File(application.filesDir, "playlist.json")
     private val builtInPlaylists = listOf(
         Pair("中央&湖南", "https://raw.githubusercontent.com/hxh19950701/WebViewTvLive/main/app/channels/2.0/%E5%A4%AE%E8%A7%86%26%E6%B9%96%E5%8D%97.json"),
-        Pair("完整", "https://raw.githubusercontent.com/hxh19950701/WebViewTvLive/main/app/channels/2.0/%E5%AE%8C%E6%95%B4.json"),
+        Pair("完整", "https://raw.githubusercontent.com/LIQUANZHONG/WebViewTvLive/refs/heads/main/channels/3.0/china_mainland.json"),
     )
 
     var onPlaylistChange: ((Playlist) -> Unit)? = null
