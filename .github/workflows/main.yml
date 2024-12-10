@@ -84,5 +84,5 @@ jobs:
           artifacts: "*.apk"
           # 会使用一个临时的token来创建Release
           token: ${{ github.token }}
-          # 自动生成一些变化列表之类的内容。
+          # 生成一些变化列表之类的内容。
           generateReleaseNotes: true
