@@ -1,4 +1,4 @@
-name: Android Build Workflow
+name: Android Build and Release Workflow
 
 # 触发条件，这里设置为推送代码到main分支或者推送以v开头的tag时触发工作流
 on:
@@ -9,7 +9,7 @@ on:
       - "v*"
 
 jobs:
-  build_apk:
+  build_and_release:
     # 运行环境选择Ubuntu最新版本
     runs-on: ubuntu-latest
     permissions:
@@ -30,12 +30,25 @@ jobs:
           gradle-version: current
           arguments: assembleRelease
 
-      # 4. 可选步骤：运行单元测试（如果项目有单元测试用例的话）
-      # - name: Run unit tests
-      #   run:./gradlew test
+      # 4. 签名APK（假设你有相关的签名配置，以下是一个示例，需要将敏感信息存到GitHub Secrets中）
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
 
-      # 5. 输出构建结果信息（例如APK文件所在目录等），方便查看构建情况
-      - name: Show build results
-        run: |
-          echo "APK files are located in app/build/outputs/apk/release"
-          ls app/build/outputs/apk/release
+      # 5. 重命名APK（可根据实际需求自定义命名规则，这里以包含tag或分支名为例）
+      - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
+
+      # 6. 发布APK到GitHub Releases页面
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "*.apk"
+          token: ${{ github.token }}
+          generateReleaseNotes: true
