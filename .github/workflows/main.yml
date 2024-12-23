@@ -45,16 +45,9 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "34.0.0"
-        # 记录签名过程的日志
-        continue-on-error: true
-        shell: bash
-        run: |
-          echo "Starting APK signing process"
-          set -x  # 打印执行的命令及其参数，方便调试
-          # 实际的签名命令由 r0adkll/sign-android-release@v1 执行
-          echo "APK signing process completed"
+        name: Sign APK
 
-      # 5. 检查签名步骤是否成功
+      # 5. 检查签名是否成功，如果失败则输出错误信息并退出
       - if: ${{ failure() }}
         name: Check Signing Failure
         run: |
@@ -69,7 +62,7 @@ jobs:
           else
             echo "Signed APK file not found. Signing step might have failed."
             exit 1
-          fi
+          end
         name: Rename APK
 
       # 7. 发布 APK 到 GitHub Releases 页面
