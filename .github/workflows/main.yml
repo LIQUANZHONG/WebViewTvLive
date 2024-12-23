@@ -1,6 +1,6 @@
 name: Android Build and Release Workflow
 
-# 触发条，这里设置为推送代码到 main 分支或者推送以 v 开头的 tag 时触发工作流
+# 触发条件，这里设置为推送代码到 main 分支或者推送以 v 开头的 tag 时触发工作流
 on:
   push:
     branches:
@@ -17,38 +17,65 @@ jobs:
     steps:
       # 1. 拉取仓库代码
       - uses: actions/checkout@v3
+        name: Checkout Code
 
       # 2. 设置 Java 运行环境，这里选用 Temurin 发行版，Java 版本为 17（根据项目需求调整）
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
+        name: Setup Java
 
       # 3. 设置 Gradle 环境，并执行构建 APK 的命令（assembleRelease 用于构建发布版本的 APK）
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
           arguments: assembleRelease
+        name: Build APK
 
       # 4. 签名 APK（假设你有相关的签名配置，以下是一个示例，需要将敏感信息存到 GitHub Secrets 中）
-      - uses: r0adkll/sign - android - release@v1
-  name: Sign app APK
-  id: sign_app
-  with:
-    releaseDirectory: app/build/outputs/apk/release
-    signingKeyBase64: ${{ secrets.RELASE_TOKEN }}
-    alias: ${{ secrets.ALIAS }}
-    keyStorePassword: ${{ secrets.KEY_TORE_PASSWORD }}
-    keyPassword: ${{ secrets.KEY_PASSWORD }}
-  env:
-    BUILD_TOOLS_VERSION: "34.0.0"
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.RELASE_TOKEN }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_TORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
+        # 记录签名过程的日志
+        continue-on-error: true
+        shell: bash
+        run: |
+          echo "Starting APK signing process"
+          set -x  # 打印执行的命令及其参数，方便调试
+          # 实际的签名命令由 r0adkll/sign-android-release@v1 执行
+          echo "APK signing process completed"
 
-      # 5. 命名 APK（可根据实际需求自定义命名规则，这里以包含 tag 或分支名为例）
-      - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
+      # 5. 检查签名步骤是否成功
+      - if: ${{ failure() }}
+        name: Check Signing Failure
+        run: |
+          echo "APK signing failed. Check the logs for details."
+          exit 1
 
-      # 6. 发布 APK 到 GitHub Releases 页面
+      # 6. 命名 APK（可根据实际需求自定义命名规则，这里以包含 tag 或分支名为例）
+      - run: |
+          apk_file=$(ls ${{steps.sign_app.outputs.signedReleaseFile}} 2>/dev/null)
+          if [ -n "$apk_file" ]; then
+            mv "$apk_file" "myapp_$GITHUB_REF_NAME.apk"
+          else
+            echo "Signed APK file not found. Signing step might have failed."
+            exit 1
+          fi
+        name: Rename APK
+
+      # 7. 发布 APK 到 GitHub Releases 页面
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "*.apk"
           token: ${{ github.token }}
           generateReleaseNotes: true
+        name: Release APK
