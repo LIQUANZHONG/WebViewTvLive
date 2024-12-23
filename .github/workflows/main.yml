@@ -1,6 +1,6 @@
 name: Android Build and Release Workflow
 
-# 触发条件，这里设置为推送代码到 main 分支或者推送以 v 开头的 tag 时触发工作流
+# 触发条，这里设置为推送代码到 main 分支或者推送以 v 开头的 tag 时触发工作流
 on:
   push:
     branches:
