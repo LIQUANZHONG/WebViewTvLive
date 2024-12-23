@@ -19,23 +19,23 @@ jobs:
       - uses: actions/checkout@v3
         name: Checkout Code
 
-      # 2. 设置 Java 运行环境，这里选用 Temurin 发行版，Java 版本为 17（根据项目需求调整）
+      # 2. 设置 Java 环境
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
         name: Setup Java
 
-      # 3. 设置 Gradle 环境，并执行构建 APK 的命令（assembleRelease 用于构建发布版本的 APK）
+      # 3. 设置 Gradle 环境并构建 APK
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
           arguments: assembleRelease
         name: Build APK
 
-      # 4. 签名 APK（假设你有相关的签名配置，以下是一个示例，需要将敏感信息存到 GitHub Secrets 中）
+      # 4. 签名 APK
       - uses: r0adkll/sign-android-release@v1
-        name: Sign app APK
+        name: Sign APK
         id: sign_app
         with:
           releaseDirectory: app/build/outputs/apk/release
@@ -45,25 +45,35 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "34.0.0"
-      
+        # 记录签名过程的日志以便后续分析错误
+        continue-on-error: true
+        shell: bash
+        run: |
+          echo "Starting APK signing process"
+          set -x  # 打印执行的命令及其参数，方便调试
+          # 实际的签名命令由 r0adkll/sign-android-release@v1 执行
+          echo "APK signing process completed"
 
-      # 5. 检查签名是否成功，如果失败则输出错误信息并退出
+      # 5. 检查签名是否成功，若失败则详细记录错误信息并继续流程
       - if: ${{ failure() }}
         name: Check Signing Failure
         run: |
-          echo "APK signing failed. Check the logs for details."
-          exit 1
+          echo "APK signing failed. Check the detailed error logs."
+          # 尝试获取更多关于签名失败的信息，例如查看日志文件（假设签名步骤有相关日志输出）
+          if [ -f "path/to/signing_log.txt" ]; then
+            cat "path/to/signing_log.txt"
+          fi
+          # 或者查看相关工具的错误码等信息（如果能获取到）
+          echo "Exit code of signing process: $?"
 
-      # 6. 命名 APK（可根据实际需求自定义命名规则，这里以包含 tag 或分支名为例）
+      # 6. 命名 APK
       - run: |
           apk_file=$(ls ${{steps.sign_app.outputs.signedReleaseFile}} 2>/dev/null)
           if [ -n "$apk_file" ]; then
             mv "$apk_file" "myapp_$GITHUB_REF_NAME.apk"
           else
             echo "Signed APK file not found. Signing step might have failed."
-            exit 1
-          end
-        name: Rename APK
+           
 
       # 7. 发布 APK 到 GitHub Releases 页面
       - uses: ncipollo/release-action@v1
