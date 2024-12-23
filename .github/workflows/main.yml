@@ -1,3 +1,5 @@
+name: Android Build and Release Workflow
+
 # 触发条件，这里设置为推送代码到main分支或者推送以v开头的tag时触发工作流
 on:
   push:
@@ -8,23 +10,27 @@ on:
 
 jobs:
   build_and_release:
+    # 运行环境选择Ubuntu最新版本
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      # 1. 拉取仓库代码
       - uses: actions/checkout@v3
 
+      # 2. 设置Java运行环境，这里选用Temurin发行版，Java版本为17（根据项目需求调整）
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
 
+      # 3. 设置Gradle环境，并执行构建APK的命令（assembleRelease用于构建发布版本的APK）
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
           arguments: assembleRelease
 
-      # 修正这一步，使用环境变量
+      # 4. 签名APK（假设你有相关的签名配置，以下是一个示例，需要将敏感信息存到GitHub Secrets中）
       - uses: r0adkll/sign-android-release@v1
         name: Sign app APK
         id: sign_app
@@ -35,17 +41,8 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
-          # 设置正确的构建工具版本，同时后续步骤可以基于此适配路径
-          BUILD_TOOLS_VERSION: "33.0.0"
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
+          BUILD_TOOLS_VERSION: "34.0.0"
 
-      - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
-
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: "*.apk"
-          token: ${{ github.token }}
-          generateReleaseNotes: true
       # 5. 重命名APK（可根据实际需求自定义命名规则，这里以包含tag或分支名为例）
       - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
 
