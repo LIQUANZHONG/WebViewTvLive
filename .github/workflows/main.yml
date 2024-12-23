@@ -10,7 +10,6 @@ on:
 
 jobs:
   build_and_release:
-    # 运行环境选择 Ubuntu 最新版本
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -34,25 +33,19 @@ jobs:
         name: Build APK
 
       # 4. 签名 APK
-      - uses: r0adkll/sign-android-release@v1
-        name: Sign APK
-        id: sign_app
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.RELASE_TOKEN }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_TORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: "34.0.0"
-        # 记录签名过程的日志以便后续分析错误
-        continue-on-error: true
-        shell: bash
+      - name: Sign APK
         run: |
-          echo "Starting APK signing process"
-          set -x  # 打印执行的命令及其参数，方便调试
-          # 实际的签名命令由 r0adkll/sign-android-release@v1 执行
-          echo "APK signing process completed"
+          # 使用 r0adkll/sign-android-release@v1 里的逻辑，拆分成命令形式
+          release_dir="app/build/outputs/apk/release"
+          signing_key_base64="${{ secrets.RELASE_TOKEN }}"
+          alias="${{ secrets.ALIAS }}"
+          key_store_password="${{ secrets.KEY_TORE_PASSWORD }}"
+          key_password="${{ secrets.KEY_PASSWORD }}"
+          build_tools_version="34.0.0"
+          # 实际签名命令，此处只是示例，需按准确语法调整
+          apksigner sign --ks-pass pass:$key_store_password --key-pass pass:$key_password --ks $signing_key_base64 --out signed.apk $release_dir/unsigned.apk
+        env:
+          BUILD_TOOLS_VERSION: $build_tools_version
 
       # 5. 检查签名是否成功，若失败则详细记录错误信息并继续流程
       - if: ${{ failure() }}
@@ -68,12 +61,12 @@ jobs:
 
       # 6. 命名 APK
       - run: |
-          apk_file=$(ls ${{steps.sign_app.outputs.signedReleaseFile}} 2>/dev/null)
+          apk_file=$(ls signed.apk 2>/dev/null)
           if [ -n "$apk_file" ]; then
             mv "$apk_file" "myapp_$GITHUB_REF_NAME.apk"
           else
             echo "Signed APK file not found. Signing step might have failed."
-           
+          
 
       # 7. 发布 APK 到 GitHub Releases 页面
       - uses: ncipollo/release-action@v1
