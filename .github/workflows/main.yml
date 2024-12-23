@@ -1,41 +1,33 @@
-name: Android Build and Release Workflow
-
-# 触发条，这里设置为推送代码到main分支或者推送以v开头的tag时触发工作流
+name: Release
 on:
   push:
-    branches:
-      - main
     tags:
       - "v*"
 
 jobs:
-  build_and_release:
-    # 运行环境选择Ubuntu最新版本
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      # 1. 拉取仓库代码
       - uses: actions/checkout@v3
-
-      # 2. 设置Java运行环境，这里选用Temurin发行版，Java版本为17（根据项目需求调整）
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 17
-
-      # 3. 设置Gradle环境，并执行构建APK的命令（assembleRelease用于构建发布版本的APK）
+          java-version: 11
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
           arguments: assembleRelease
-
-      
-
-      # 5. 命名APK（可根据实际需求自定义命名规则，这里以包含tag或分支名为例）
-      - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
-
-      # 6. 发布APK到GitHub Releases页面
+      - uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} LittleGooseOffice_$GITHUB_REF_NAME.apk
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "*.apk"
