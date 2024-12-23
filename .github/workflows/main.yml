@@ -31,17 +31,17 @@ jobs:
           arguments: assembleRelease
 
       # 4. 签名 APK（假设你有相关的签名配置，以下是一个示例，需要将敏感信息存到 GitHub Secrets 中）
-      - uses: r0adkll/sign-android-release@v1
-        name: Sign app APK
-        id: sign_app
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.RELASE_TOKEN }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_TORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: "34.0.0"
+      - uses: r0adkll/sign - android - release@v1
+  name: Sign app APK
+  id: sign_app
+  with:
+    releaseDirectory: app/build/outputs/apk/release
+    signingKeyBase64: ${{ secrets.RELASE_TOKEN }}
+    alias: ${{ secrets.ALIAS }}
+    keyStorePassword: ${{ secrets.KEY_TORE_PASSWORD }}
+    keyPassword: ${{ secrets.KEY_PASSWORD }}
+  env:
+    BUILD_TOOLS_VERSION: "34.0.0"
 
       # 5. 命名 APK（可根据实际需求自定义命名规则，这里以包含 tag 或分支名为例）
       - run: mv ${{steps.sign_app.outputs.signedReleaseFile}} myapp_$GITHUB_REF_NAME.apk
