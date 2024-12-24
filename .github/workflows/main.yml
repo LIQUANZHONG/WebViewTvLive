@@ -15,23 +15,25 @@ jobs:
     steps:
       # 1. 拉取仓库代码
       - uses: actions/checkout@v3
-
       # 2. 设置Java运行环境，这里选用Temurin发行版，Java版本为17（根据项目需求调整）
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
-
       # 3. 设置Gradle环境，并执行构建APK的命令（assembleRelease用于构建发布版本的APK）
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
           arguments: assembleRelease
-
       # 上传构建产物
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
           path:./app/build/outputs/apk/debug/app-debug.apk
-
+      # 4. 发布APK到GitHub Releases页面
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "*.apk"
+          token: ${{ github.token }}
+          generateReleaseNotes: true
    
