@@ -26,9 +26,10 @@ jobs:
           gradle-version: current
           arguments: assembleRelease
       # 上传构建产物
-      - uses: actions/upload-artifact@v4
-        with:
-          name: app-debug-apk
+      - name: 上传工件
+  uses: actions/upload-artifact@v4
+  with:
+    path: build
         
 
    
