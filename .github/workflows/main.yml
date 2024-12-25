@@ -1,34 +1,32 @@
-# 触发条件，这里设置为推送代码到main分支或者推送以v开头的tag时触发工作流
+name: Java CI
+
 on:
   push:
-    branches:
-      - main
-    tags:
-      - "v*"
+  workflow_dispatch:
+  pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
-  build_and_release:
-    # 运行环境选择Ubuntu最新版本
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      # 1. 拉取仓库代码
-      - uses: actions/checkout@v3
-      # 2. 设置Java运行环境，这里选用Temurin发行版，Java版本为17（根据项目需求调整）
-      - uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
-      # 3. 设置Gradle环境，并执行构建APK的命令（assembleRelease用于构建发布版本的APK）
-      - uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: current
-          arguments: assembleRelease
-      # 上传构建产物
-     - uses: actions/upload-artifact@v4
-    with:
-     path: build
-        
 
-   
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'zulu'
+
+    - name: Build with Gradle
+      run: |
+        bash./gradlew build --no-daemon
+
+    - name: Get short SHA
+      run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+    - uses: actions/upload-artifact@v4
+      with:
+          name: CCTV_Viewer_${{ env.SHORT_SHA }}
+          path:./app/build/outputs/apk/debug/app-debug.apk
