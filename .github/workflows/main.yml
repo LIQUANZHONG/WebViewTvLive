@@ -22,7 +22,6 @@ jobs:
     - name: Build with Gradle
       run: |
         bash./gradlew build --no-daemon
-
     - name: Get short SHA
       run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
