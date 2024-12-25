@@ -26,10 +26,9 @@ jobs:
           gradle-version: current
           arguments: assembleRelease
       # 上传构建产物
-     
-  uses: actions/upload-artifact@v4
-  with:
-    path: build
+     - uses: actions/upload-artifact@v4
+    with:
+     path: build
         
 
    
