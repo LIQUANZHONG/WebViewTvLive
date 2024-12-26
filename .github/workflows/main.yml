@@ -45,11 +45,11 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease --stacktrace
 
-      # Step 7: List APK files to verify build output
+      # Step 7: List APK output files to verify build output
       - name: List APK output files
         run: ls -R ./app/build/outputs/apk
 
-      # Step 8: Upload APK artifact (ensure the correct path is used)
+      # Step 8: Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
