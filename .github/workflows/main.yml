@@ -46,12 +46,12 @@ jobs:
         run: ./gradlew assembleRelease --stacktrace
 
       # Step 7: List APK files to verify build output
-      - name: List APK files
-        run: ls -R app/build/outputs/apk
+      - name: List APK output files
+        run: ls -R ./app/build/outputs/apk
 
-      # Step 8: Upload APK artifact
+      # Step 8: Upload APK artifact (ensure the correct path is used)
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
-          path: ./app/build/outputs/apk/release/app-release.apk # 确保路径正确
+          path: ./app/build/outputs/apk/release/app-release.apk  # Ensure the correct path
