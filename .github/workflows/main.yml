@@ -18,12 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up JDK (assuming you're using OpenJDK 11)
+      # Step 2: Set up JDK (now using Temurin, the new recommended distribution)
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
+          distribution: 'temurin'
 
       # Step 3: Cache Gradle dependencies to speed up builds
       - name: Cache Gradle dependencies
@@ -40,7 +40,7 @@ jobs:
 
       # Step 5: Upload APK with updated version of actions/upload-artifact
       - name: Upload APK
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v3
         with:
           name: app-release
           path: app/build/outputs/apk/release/app-release.apk # Adjust the path based on your build configuration
