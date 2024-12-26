@@ -38,9 +38,9 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease # For release APK, use assembleRelease or for debug, use assembleDebug
 
-      # Step 5: Upload the APK as an artifact (optional)
+      # Step 5: Upload APK with updated version of actions/upload-artifact
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: app-release
           path: app/build/outputs/apk/release/app-release.apk # Adjust the path based on your build configuration
