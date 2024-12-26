@@ -1,27 +1,30 @@
-name: Build and Upload APK
+name: Build and Sign APK
 
 on:
   push:
     branches:
-      - main
+      - main  # 当代码推送到 main 分支时触发构建
   pull_request:
     branches:
-      - main
+      - main  # 当有 PR 请求合并到 main 分支时触发构建
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 在 Ubuntu 环境中运行构建
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Set up JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # Step 3: Cache Gradle dependencies
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -30,17 +33,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      # Step 4: Make gradlew executable
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build APK (Release version)
+      # Step 5: Set up the keystore file
+      - name: Set up keystore file
+        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > /tmp/keystore.jks
+
+      # Step 6: Build and Sign APK (Release version)
+      - name: Build and Sign APK
         run: ./gradlew assembleRelease --stacktrace
 
+      # Step 7: List build outputs to check APK location
       - name: List build outputs
         run: ls -R ./app/build/outputs/apk
 
-      - name: Upload APK artifacts
+      # Step 8: Upload signed APK artifact
+      - name: Upload signed APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
-          path: ./app/build/outputs/apk/release/app-release-unsigned.apk  # Updated path to the correct file
+          path: ./app/build/outputs/apk/release/app-release.apk
