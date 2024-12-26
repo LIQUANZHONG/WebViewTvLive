@@ -54,10 +54,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
-          path: ./app/build/outputs/apk/release/app-release.apk
-
-      # Step 9: (Optional) Additional steps if you want to debug the APK or logs
-      # - name: Debug APK content
-      #   run: apktool d ./app/build/outputs/apk/release/app-release.apk -o ./app/build/outputs/apk/decompiled
-
-
+          path: ./app/build/outputs/apk/release/app-release.apk # 确保路径正确
