@@ -25,9 +25,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # Step 3: Cache Gradle dependencies to speed up builds
+      # Step 3: Cache Gradle dependencies to speed up builds (using actions/cache@v3)
       - name: Cache Gradle dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Updated to v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
@@ -44,7 +44,7 @@ jobs:
 
       # Step 6: Upload APK with updated version of actions/upload-artifact
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: app-release
-          path: app/build/outputs/apk/release/app-release.apk # Adjust the path based on your build configuration
+          path: app/build/outputs/apk/release/app-release.apk # Make sure this path is correct based on your project
