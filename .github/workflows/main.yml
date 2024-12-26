@@ -1,6 +1,5 @@
-name: Build APK
+name: Build and Upload APK
 
-# Trigger the workflow on push or pull request events to the main branch
 on:
   push:
     branches:
@@ -14,37 +13,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up JDK 17 (updated to Java 17 for Android Gradle plugin compatibility)
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # Step 3: Cache Gradle dependencies to speed up builds (using actions/cache@v3)
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3  # Updated to v3
+        uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # Step 4: Make gradlew executable
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      # Step 5: Build the APK
       - name: Build APK
-        run: ./gradlew assembleRelease # For release APK, use assembleRelease or for debug, use assembleDebug
+        run: ./gradlew assembleRelease
 
-      # Step 6: Upload APK with updated version of actions/upload-artifact
-      - name: Upload APK
-        uses: actions/upload-artifact@v3  # Updated to v3
+      # Set the SHORT_SHA environment variable
+      - name: Set SHORT_SHA
+        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | head -c 7)" >> $GITHUB_ENV
+
+      - name: List build outputs
+        run: ls -R app/build/outputs/apk
+
+      - name: Upload APK artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release.apk # Make sure this path is correct based on your project
+          name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
+          path: ./app/build/outputs
