@@ -13,15 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Set up JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # Step 3: Cache Gradle dependencies
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -30,24 +33,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      # Step 4: Make gradlew executable
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      # Step 1: Build APK
+      # Step 5: Build APK (Release version)
       - name: Build APK
         run: ./gradlew assembleRelease --stacktrace
 
-      # Step 2: Set the SHORT_SHA environment variable for artifact naming
-      - name: Set SHORT_SHA
-        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | head -c 7)" >> $GITHUB_ENV
-
-      # Step 3: List APK build outputs to check if the APK exists
+      # Step 6: List build outputs to check APK location
       - name: List build outputs
         run: ls -R ./app/build/outputs/apk
 
-      # Step 4: Upload APK artifact
+      # Step 7: Upload APK artifact
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
-          path: ./app/build/outputs/apk/release/app-release.apk  # Ensure the path is correct
+          path: ./app/build/outputs/apk/release/app-release.apk  # Ensure this path matches the correct output
