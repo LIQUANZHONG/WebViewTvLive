@@ -17,20 +17,32 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            // 这里从 GitHub Secrets 中获取密钥文件和密码
+            storeFile file(System.getenv("KEYSTORE_FILE_PATH")) // 密钥文件路径
+            storePassword System.getenv("KEYSTORE_PASSWORD") // 密钥库密码
+            keyAlias System.getenv("KEY_ALIAS") // 密钥别名
+            keyPassword System.getenv("KEY_PASSWORD") // 密钥密码
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig signingConfigs.release // 配置签名
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
 }
 
 dependencies {
